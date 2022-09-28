@@ -49,6 +49,9 @@ def read_query(connection, query):
 
 
 
+
+# Tables To Create in MySQL
+
 create_table1 = """
 create table Admissions(
 Patient_ID int primary key,
@@ -88,6 +91,10 @@ Patient_Name varchar(30) not null,
 Doctor_Name varchar(30) not null,
 Completed varchar(20) not null);"""
 
+
+
+# Information to Populate MySQL Tables
+
 admissions_info = """
 insert into Admissions values
 ( 001, "Mark Blue", "11/06/1988", "Geico", "(111) 111-1111", "patient1@gmail.com", "cough"),
@@ -111,6 +118,7 @@ insert into Admissions values
 ( 019, "Lance Azul", "05/12/1973", "Geico", "(333) 333-3334", "patient19@gmail.com", "abdominal pain"),
 ( 020, "Marideth Grey", "11/09/1985", "Progressive", "(333) 333-3335", "patient20@gmail.com", "check-up");"""
 
+
 anesthetics_info = """
 insert into Anesthetics_Staff values
 ( 001, "Manuel Hernandez", "BS", "03/12/2015", "$110,000", "M-F", "Yes"),
@@ -119,6 +127,7 @@ insert into Anesthetics_Staff values
 ( 004, "Cameron Bakehorn", "Masters", "06/11/2016", "$140,000", "M-F", "Yes"),
 ( 005, "Michael Woodruff", "Masters", "11/30/2012", "$150,000", "M-F", "Yes");"""
 
+
 cardiology_info = """
 insert into Cardiology_Staff values
 ( 001, "Anton Luna", "Masters", "02/11/2016", "$110,000", "M-F", "Yes"),
@@ -126,6 +135,7 @@ insert into Cardiology_Staff values
 ( 003, "Kaitlyn Shipman", "Masters", "04/16/2020", "$130,000", "M-F", "Yes"),
 ( 004, "Grace Comerford", "Masters", "09/20/2019", "$140,000", "M-F", "Yes"),
 ( 005, "Tristan Bragg", "Masters", "05/02/2015", "$150,000", "M-F", "Yes");"""
+
 
 sept_apt_info = """
 insert into September_Cardiology_Appointments values
@@ -147,6 +157,9 @@ insert into September_Cardiology_Appointments values
 ( 016, "09/31/2022", "0830", "Kelly Brown", "Grace Comerford", "No");"""
 
 
+
+# Display The Table Values
+
 display_table1 = """
 select * from Admissions;"""
 
@@ -159,8 +172,38 @@ select * from Cardiology_Staff;"""
 display_table4 = """
 select * from September_Cardiology_Appointments;"""
 
+
+# Update Table Values in MySQL
+
+cardiology_update = """
+update Cardiology_Staff
+set Employee_Salary = "$450,749"
+where Employee_ID = 001;"""
+
+anesthesiologist_update = """
+update Anesthetics_Staff
+set Employee_Salary = "$115,000"
+where Employee_ID = 001;"""
+
+
+# Deleting a Value From Table in MySQL
+
+admissions_value_removal = """
+delete from Admissions
+where Patient_ID = 001;"""
+
+apt_value_removal = """
+delete from September_Cardiology_Appointments
+where Appointment_ID = 007;"""
+
+
+
+
+
+# Run The Selected Commands
+
 connection = create_server_connection("localhost", "root", "student", "Central_Clinic")
-execute_query(connection, sept_apt_info)
+execute_query(connection, apt_value_removal)
 
 information = read_query(connection, display_table4)
 for values in information:
